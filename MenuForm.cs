@@ -23,7 +23,7 @@ namespace AppInformer
 
         private async void ExecuteButton_Click(object sender, EventArgs e)
         {
-            listApp.Items.Clear();
+            ListApp.Items.Clear();
             ExecuteButton.Enabled = false;
             var psobj = await CallPowerShellAsync();
             ExecuteButton.Enabled = true;
@@ -90,17 +90,17 @@ namespace AppInformer
                     }
                     if (notNull)
                     {
-                        listApp.Items.Add(lvi);
+                        ListApp.Items.Add(lvi);
                     }
                 }
             }
         }
 
-        private void listApp_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        private void ListApp_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             Cursor.Current = Cursors.No;
             e.Cancel = true;
-            e.NewWidth = listApp.Columns[e.ColumnIndex].Width;
+            e.NewWidth = ListApp.Columns[e.ColumnIndex].Width;
         }
     }
 }
