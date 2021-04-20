@@ -112,6 +112,7 @@ namespace AppInformer
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -23,6 +23,7 @@ namespace AppInformer
 
         private async void ExecuteButton_Click(object sender, EventArgs e)
         {
+            listApp.Items.Clear();
             ExecuteButton.Enabled = false;
             var psobj = await CallPowerShellAsync();
             ExecuteButton.Enabled = true;
