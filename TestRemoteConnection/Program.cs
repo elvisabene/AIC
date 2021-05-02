@@ -6,12 +6,60 @@ using System.Threading.Tasks;
 using System.Net;
 using Microsoft.Win32;
 using System.Collections;
+using System.Net.Sockets;
 
 namespace TestRemoteConnection
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            GetLocalAddress();
+
+            Console.ReadLine();
+        }
+
+        public static void GetLocalAddress()
+        {
+            // доступно ли сетевое подключение
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                return;
+            // запросить у DNS-сервера IP-адрес, связанный с именем узла
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            // Пройдем по списку IP-адресов, связанных с узлом
+            foreach (var ip in host.AddressList)
+            {
+                // если текущий IP-адрес версии IPv4, то выведем его
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    Console.WriteLine(ip.ToString());
+                }
+            }
+        }
+
+        private static void ShowHashTable(Hashtable hashTable, string title)
+        {
+            // Проверяем входные аргументы.
+            if (hashTable == null)
+            {
+                throw new ArgumentNullException(nameof(hashTable));
+            }
+
+            if (string.IsNullOrEmpty(title))
+            {
+                throw new ArgumentNullException(nameof(title));
+            }
+
+            // Выводим все имеющие пары хеш-значение
+            Console.WriteLine(title);
+            foreach (var key in hashTable.Keys)
+            {
+                Console.WriteLine($"\t{key} --- {hashTable[key]}");
+            }
+            Console.WriteLine();
+        }
+
+        private void GetRemote()
         {
             const string MainKeyPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
             const string AppName = "DisplayName";
@@ -51,31 +99,7 @@ namespace TestRemoteConnection
                 }
             }
             foreach (var table in apps)
-            ShowHashTable(table, " Table");
-
-            Console.ReadKey();
-        }
-
-        private static void ShowHashTable(Hashtable hashTable, string title)
-        {
-            // Проверяем входные аргументы.
-            if (hashTable == null)
-            {
-                throw new ArgumentNullException(nameof(hashTable));
-            }
-
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentNullException(nameof(title));
-            }
-
-            // Выводим все имеющие пары хеш-значение
-            Console.WriteLine(title);
-            foreach (var key in hashTable.Keys)
-            {
-                Console.WriteLine($"\t{key} --- {hashTable[key]}");
-            }
-            Console.WriteLine();
+                ShowHashTable(table, " Table");
         }
     }
 }
