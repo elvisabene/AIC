@@ -33,17 +33,18 @@ namespace AppInformer
             this.ListApp = new System.Windows.Forms.ListView();
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.VersionColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.chooseOptionComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.menuStrip1.SuspendLayout();
+            this.buttonsPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.compNamesComboBox = new System.Windows.Forms.ComboBox();
+            this.buttonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExecuteButton
             // 
-            this.ExecuteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ExecuteButton.Location = new System.Drawing.Point(6, 56);
+            this.ExecuteButton.Font = new System.Drawing.Font("Sitka Text", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExecuteButton.Location = new System.Drawing.Point(3, 3);
             this.ExecuteButton.Name = "ExecuteButton";
-            this.ExecuteButton.Size = new System.Drawing.Size(200, 55);
+            this.ExecuteButton.Size = new System.Drawing.Size(226, 70);
             this.ExecuteButton.TabIndex = 0;
             this.ExecuteButton.Text = "Получить список приложений";
             this.ExecuteButton.UseVisualStyleBackColor = true;
@@ -63,7 +64,7 @@ namespace AppInformer
             this.ListApp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ListApp.Location = new System.Drawing.Point(255, 56);
             this.ListApp.Name = "ListApp";
-            this.ListApp.Size = new System.Drawing.Size(1105, 685);
+            this.ListApp.Size = new System.Drawing.Size(1115, 685);
             this.ListApp.TabIndex = 1;
             this.ListApp.UseCompatibleStateImageBehavior = false;
             this.ListApp.View = System.Windows.Forms.View.Details;
@@ -71,34 +72,48 @@ namespace AppInformer
             // 
             // NameColumn
             // 
-            this.NameColumn.Text = "Name";
+            this.NameColumn.Text = "Название приложения";
             this.NameColumn.Width = 482;
             // 
             // VersionColumn
             // 
-            this.VersionColumn.Text = "Version";
-            this.VersionColumn.Width = 462;
+            this.VersionColumn.Text = "Версия приложения";
+            this.VersionColumn.Width = 401;
             // 
-            // menuStrip1
+            // buttonsPanel
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chooseOptionComboBox});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1382, 32);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
+            this.buttonsPanel.BackColor = System.Drawing.Color.Blue;
+            this.buttonsPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.buttonsPanel.Controls.Add(this.ExecuteButton);
+            this.buttonsPanel.Location = new System.Drawing.Point(13, 56);
+            this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.Size = new System.Drawing.Size(236, 685);
+            this.buttonsPanel.TabIndex = 2;
             // 
-            // chooseOptionComboBox
+            // label1
             // 
-            this.chooseOptionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.chooseOptionComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.chooseOptionComboBox.Items.AddRange(new object[] {
-            "Просмотр приложений",
-            "Сравнить"});
-            this.chooseOptionComboBox.Name = "chooseOptionComboBox";
-            this.chooseOptionComboBox.Size = new System.Drawing.Size(200, 28);
+            this.label1.Font = new System.Drawing.Font("Sitka Text", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(8, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(299, 35);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Выбрать компьютер:";
+            // 
+            // compNamesComboBox
+            // 
+            this.compNamesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.compNamesComboBox.Font = new System.Drawing.Font("Sitka Text", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.compNamesComboBox.FormattingEnabled = true;
+            this.compNamesComboBox.Items.AddRange(new object[] {
+            "ttttt",
+            "wda",
+            "dwadfwaf",
+            "fewafeaf",
+            "fwafaw"});
+            this.compNamesComboBox.Location = new System.Drawing.Point(264, 6);
+            this.compNamesComboBox.Name = "compNamesComboBox";
+            this.compNamesComboBox.Size = new System.Drawing.Size(484, 32);
+            this.compNamesComboBox.TabIndex = 4;
             // 
             // MenuForm
             // 
@@ -106,20 +121,19 @@ namespace AppInformer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1382, 753);
+            this.Controls.Add(this.compNamesComboBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonsPanel);
             this.Controls.Add(this.ListApp);
-            this.Controls.Add(this.ExecuteButton);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1400, 800);
             this.MinimumSize = new System.Drawing.Size(1400, 800);
             this.Name = "MenuForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.MenuForm_Load);
+            this.buttonsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -128,9 +142,10 @@ namespace AppInformer
         private System.Windows.Forms.Button ExecuteButton;
         private System.Windows.Forms.ListView ListApp;
         private System.Windows.Forms.ColumnHeader NameColumn;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripComboBox chooseOptionComboBox;
         private System.Windows.Forms.ColumnHeader VersionColumn;
+        private System.Windows.Forms.Panel buttonsPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox compNamesComboBox;
     }
 }
 

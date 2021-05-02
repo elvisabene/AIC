@@ -26,7 +26,7 @@ namespace AppInformer
         {
             ListApp.Items.Clear();
             ExecuteButton.Enabled = false;
-            var psobj = await RegistryConnection.GetAppsAsync("ON-PC");
+            var psobj = await RegistryConnection.GetAppsAsync(null);
             ExecuteButton.Enabled = true;
             FillListViewWithApps(psobj);
         }
@@ -96,6 +96,10 @@ namespace AppInformer
 
         private void FillListViewWithApps(Hashtable[] apps)
         {
+            if (apps is null)
+            {
+                return;
+            }
             foreach(Hashtable app in apps)
             {
                 var lvi = new ListViewItem();
@@ -127,6 +131,11 @@ namespace AppInformer
             Cursor.Current = Cursors.No;
             e.Cancel = true;
             e.NewWidth = ListApp.Columns[e.ColumnIndex].Width;
+        }
+
+        private void MenuForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
