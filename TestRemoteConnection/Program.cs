@@ -7,6 +7,9 @@ using System.Net;
 using Microsoft.Win32;
 using System.Collections;
 using System.Net.Sockets;
+using System.Net.NetworkInformation;
+using System.Management.Automation.Runspaces;
+using System.Diagnostics;
 
 namespace TestRemoteConnection
 {
@@ -14,15 +17,44 @@ namespace TestRemoteConnection
     {
         static void Main(string[] args)
         {
-            GetLocalAddress();
-
+            //GetLocalAddress();
+            GetLocalNames();
             Console.ReadLine();
+        }
+
+        public static void GetLocalNames()
+        {
+            ProcessStartInfo cmdproc = new ProcessStartInfo
+            {
+                FileName = "cmd",
+                Arguments = "/c net view",
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
+                UseShellExecute = false
+            };
+
+            var result = Process.Start(cmdproc).StandardOutput.ReadToEnd();
+            var strs = result.Split(" .,\n\r".ToCharArray());
+            List<string> list = new List<string>();
+            for (int i = 0; i < strs.Length; i++)
+            {
+                if (String.IsNullOrEmpty(strs[i]))
+                {
+                    continue;
+                }
+                if (strs[i].StartsWith("\\"))
+                {
+                    list.Add(strs[i]);
+                }
+            }
+            var lsar = list.ToArray();
+            Console.WriteLine(result);
         }
 
         public static void GetLocalAddress()
         {
             // доступно ли сетевое подключение
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            if (!NetworkInterface.GetIsNetworkAvailable())
                 return;
             // запросить у DNS-сервера IP-адрес, связанный с именем узла
             var host = Dns.GetHostEntry(Dns.GetHostName());

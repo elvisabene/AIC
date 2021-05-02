@@ -26,7 +26,7 @@ namespace AppInformer
         {
             ListApp.Items.Clear();
             ExecuteButton.Enabled = false;
-            var psobj = await RegistryConnection.GetAppsAsync(null);
+            var psobj = await RegistryConnection.GetAppsAsync(compNamesComboBox.Text);
             ExecuteButton.Enabled = true;
             FillListViewWithApps(psobj);
         }
@@ -133,9 +133,10 @@ namespace AppInformer
             e.NewWidth = ListApp.Columns[e.ColumnIndex].Width;
         }
 
-        private void MenuForm_Load(object sender, EventArgs e)
+        private async void MenuForm_Load(object sender, EventArgs e)
         {
-
+            var items = await NetworkHelper.GetLocalNamesAsync();
+            compNamesComboBox.Items.AddRange(items);
         }
     }
 }

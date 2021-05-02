@@ -64,12 +64,7 @@ namespace AppInformer
 
                     return apps.ToArray();
                 }
-                catch (UnauthorizedAccessException e)
-                {
-                    MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
-                catch (IOException e)
+                catch (Exception e)
                 {
                     MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;

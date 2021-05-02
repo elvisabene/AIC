@@ -104,12 +104,6 @@ namespace AppInformer
             this.compNamesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.compNamesComboBox.Font = new System.Drawing.Font("Sitka Text", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.compNamesComboBox.FormattingEnabled = true;
-            this.compNamesComboBox.Items.AddRange(new object[] {
-            "ttttt",
-            "wda",
-            "dwadfwaf",
-            "fewafeaf",
-            "fwafaw"});
             this.compNamesComboBox.Location = new System.Drawing.Point(264, 6);
             this.compNamesComboBox.Name = "compNamesComboBox";
             this.compNamesComboBox.Size = new System.Drawing.Size(484, 32);
