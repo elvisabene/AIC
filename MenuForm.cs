@@ -26,9 +26,9 @@ namespace AppInformer
         {
             ListApp.Items.Clear();
             ExecuteButton.Enabled = false;
-            var psobj = await CallPowerShellAsync();
+            var psobj = await RegistryConnection.GetAppsAsync("ON-PC");
             ExecuteButton.Enabled = true;
-            FillListViewWithPSObjects(psobj);
+            FillListViewWithApps(psobj);
         }
 
         private async Task<Collection<PSObject>> CallPowerShellAsync()
@@ -63,36 +63,61 @@ namespace AppInformer
 
         private void FillListViewWithPSObjects(Collection<PSObject> psobjs)
         {
-            if (psobjs.Count != 0)
+            for (int i = 0; i < psobjs.Count; i++)
             {
-                for (int i = 0; i < psobjs.Count; i++)
+                var lvi = new ListViewItem();
+                bool notNull = true;
+                foreach (PSPropertyInfo prop in psobjs[i].Properties)
                 {
-                    var lvi = new ListViewItem();
-                    bool notNull = true;
-                    foreach (PSPropertyInfo prop in psobjs[i].Properties)
+                    switch (prop.Name)
                     {
-                        switch (prop.Name)
+                        case "DisplayName":
+                            {
+                                if (prop.Value == null)
+                                {
+                                    notNull = false;
+                                }
+                                lvi.Text = prop.Value?.ToString();
+                                break;
+                            }
+                        case "DisplayVersion":
+                            {
+                                lvi.SubItems.Add(prop.Value?.ToString());
+                                break;
+                            }
+                    }
+                }
+                if (notNull)
+                {
+                    ListApp.Items.Add(lvi);
+                }
+            }
+        }
+
+        private void FillListViewWithApps(Hashtable[] apps)
+        {
+            foreach(Hashtable app in apps)
+            {
+                var lvi = new ListViewItem();
+                bool notNull = true;
+                foreach (var key in app.Keys)
+                {
+                    if ((string)key == "DisplayName")
+                    {
+                        if (app[key] == null)
                         {
-                            case "DisplayName":
-                                {
-                                    if (prop.Value == null)
-                                    {
-                                        notNull = false;
-                                    }
-                                    lvi.Text = prop.Value?.ToString();
-                                    break;
-                                }
-                            case "DisplayVersion":
-                                {
-                                    lvi.SubItems.Add(prop.Value?.ToString());
-                                    break;
-                                }
+                            notNull = false;
                         }
+                        lvi.Text = app[key].ToString();
                     }
-                    if (notNull)
+                    else if ((string)key == "DisplayVersion")
                     {
-                        ListApp.Items.Add(lvi);
+                        lvi.SubItems.Add(app[key].ToString());
                     }
+                }
+                if (notNull)
+                {
+                    ListApp.Items.Add(lvi);
                 }
             }
         }
