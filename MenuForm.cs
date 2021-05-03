@@ -133,10 +133,18 @@ namespace AppInformer
             e.NewWidth = ListApp.Columns[e.ColumnIndex].Width;
         }
 
-        private async void MenuForm_Load(object sender, EventArgs e)
+        private void MenuForm_Load(object sender, EventArgs e)
         {
+            updateComboBox_button.PerformClick();
+        }
+
+        private async void updateComboBox_button_Click(object sender, EventArgs e)
+        {
+            updateComboBox_button.Enabled = false;
+            compNamesComboBox.Items.Clear();
             var items = await NetworkHelper.GetLocalNamesAsync();
             compNamesComboBox.Items.AddRange(items);
+            updateComboBox_button.Enabled = true;
         }
     }
 }

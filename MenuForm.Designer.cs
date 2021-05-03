@@ -36,17 +36,18 @@ namespace AppInformer
             this.buttonsPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.compNamesComboBox = new System.Windows.Forms.ComboBox();
+            this.updateComboBox_button = new System.Windows.Forms.Button();
             this.buttonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExecuteButton
             // 
             this.ExecuteButton.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ExecuteButton.Location = new System.Drawing.Point(3, 3);
+            this.ExecuteButton.Location = new System.Drawing.Point(3, 79);
             this.ExecuteButton.Name = "ExecuteButton";
             this.ExecuteButton.Size = new System.Drawing.Size(226, 70);
             this.ExecuteButton.TabIndex = 0;
-            this.ExecuteButton.Text = "Получить список приложений";
+            this.ExecuteButton.Text = "Обновить список приложений";
             this.ExecuteButton.UseVisualStyleBackColor = true;
             this.ExecuteButton.Click += new System.EventHandler(this.ExecuteButton_Click);
             // 
@@ -84,6 +85,7 @@ namespace AppInformer
             // 
             this.buttonsPanel.BackColor = System.Drawing.Color.Blue;
             this.buttonsPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.buttonsPanel.Controls.Add(this.updateComboBox_button);
             this.buttonsPanel.Controls.Add(this.ExecuteButton);
             this.buttonsPanel.Location = new System.Drawing.Point(13, 56);
             this.buttonsPanel.Name = "buttonsPanel";
@@ -108,6 +110,17 @@ namespace AppInformer
             this.compNamesComboBox.Name = "compNamesComboBox";
             this.compNamesComboBox.Size = new System.Drawing.Size(484, 32);
             this.compNamesComboBox.TabIndex = 4;
+            // 
+            // updateComboBox_button
+            // 
+            this.updateComboBox_button.Font = new System.Drawing.Font("Sitka Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.updateComboBox_button.Location = new System.Drawing.Point(3, 3);
+            this.updateComboBox_button.Name = "updateComboBox_button";
+            this.updateComboBox_button.Size = new System.Drawing.Size(226, 70);
+            this.updateComboBox_button.TabIndex = 1;
+            this.updateComboBox_button.Text = "Обновить список компьютеров";
+            this.updateComboBox_button.UseVisualStyleBackColor = true;
+            this.updateComboBox_button.Click += new System.EventHandler(this.updateComboBox_button_Click);
             // 
             // MenuForm
             // 
@@ -140,6 +153,7 @@ namespace AppInformer
         private System.Windows.Forms.Panel buttonsPanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox compNamesComboBox;
+        private System.Windows.Forms.Button updateComboBox_button;
     }
 }
 
