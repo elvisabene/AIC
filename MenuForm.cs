@@ -146,5 +146,10 @@ namespace AppInformer
             compNamesComboBox.Items.AddRange(items);
             updateComboBox_button.Enabled = true;
         }
+
+        private void writeInFile_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
